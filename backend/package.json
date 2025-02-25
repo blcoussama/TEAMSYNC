@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "ts-node-dev --files src/index.ts",
+    "build": "tsc && cp /package.json ./dist",
+    "start": "node dist/index.js"
   },
   "keywords": [],
   "author": "",
@@ -16,7 +18,8 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "mongoose": "^8.10.1",
-    "passport-google-oauth": "^2.0.0",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0",
     "passport-local": "^1.0.0",
     "uuid": "^11.1.0",
     "zod": "^3.24.2"
@@ -30,9 +33,8 @@
     "@types/mongoose": "^5.11.97",
     "@types/node": "^22.13.5",
     "@types/passport": "^1.0.17",
-    "@types/passport-google-oauth": "^1.0.45",
+    "@types/passport-google-oauth20": "^2.0.16",
     "@types/passport-local": "^1.0.38",
-    "passport": "^0.7.0",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.7.3"
   }
