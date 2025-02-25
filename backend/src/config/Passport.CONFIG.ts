@@ -5,7 +5,6 @@ import { config } from "./App.CONFIG";
 import { NotFoundException } from "../utils/AppError.UTIL";
 import { ProviderEnum } from "../enums/AccountProvider.ENUM";
 import { loginOrCreateAccountService } from "../services/Auth.SERVICE";
-import { any } from "zod";
 
 passport.use(
     new GoogleStrategy({
@@ -17,7 +16,7 @@ passport.use(
         },
         async (req: Request, accessToken, refreshToken, profile, done) => {
             try {
-                const {email, sub:googleId, picture} = profile._json; 
+                const {email, sub: googleId, picture} = profile._json; 
 
                 console.log(profile, "Profile");
                 console.log(googleId, "Goodle ID");

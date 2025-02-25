@@ -14,7 +14,7 @@ export const googleLoginCallback = asyncHandler(
         }
 
         return (
-            res.redirect(`${config.FRONTEND_ORIGIN}/workspace/${currentWorkspace}?status=failure`)
+            res.redirect(`${config.FRONTEND_ORIGIN}/workspace/${currentWorkspace}`)
         )
     }
 )
