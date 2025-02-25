@@ -1,5 +1,6 @@
 import { ErrorRequestHandler } from "express";
 import { HTTPSTATUS } from "../config/Http.CONFIG";
+import { AppError } from "../utils/AppError.UTIL";
 
 export const errorHandler: ErrorRequestHandler = (error, req, res, next): any => {
 
@@ -8,6 +9,13 @@ export const errorHandler: ErrorRequestHandler = (error, req, res, next): any =>
     if(error instanceof SyntaxError) {
         return res.status(HTTPSTATUS.BAD_REQUEST).json({
             message: "Invalid JSON payload. Please check the request payload."
+        })
+    }
+
+    if(error instanceof AppError) {
+        return res.status(error.statusCode).json({
+            message: error.message,
+            errorCode: error.errorCode
         })
     }
 

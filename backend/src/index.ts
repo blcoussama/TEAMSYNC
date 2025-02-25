@@ -7,6 +7,7 @@ import connectDatabase from "./config/Database.CONFIG"
 import { errorHandler } from "./middlewares/ErrorHandler.MIDDLEWARE"
 import { HTTPSTATUS } from "./config/Http.CONFIG"
 import { asyncHandler } from "./middlewares/AsyncHandler.MIDDLEWARE"
+import { BadRequestException } from "./utils/AppError.UTIL"
 
 const app = express();
 const BASE_PATH = config.BASE_PATH;
@@ -34,8 +35,7 @@ app.use(
 )
 
 app.get("/", 
-    asyncHandler ((req: Request, res: Response, next: NextFunction) => {
-        throw new Error("Test Error");
+    asyncHandler( async(req: Request, res: Response, next: NextFunction) => {
         res.status(HTTPSTATUS.OK).json({
             message: "Hello This TEAMSync APP."
         })
