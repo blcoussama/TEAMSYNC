@@ -18,3 +18,9 @@ export const googleLoginCallback = asyncHandler(
         )
     }
 )
+
+export const registerUserController = asyncHandler(
+    async(req: Request, res: Response) => {
+        
+    }
+)
