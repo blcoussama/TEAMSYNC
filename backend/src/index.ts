@@ -4,13 +4,16 @@ import cors from "cors"
 import session from "cookie-session"
 import { config } from "./config/App.CONFIG"
 import connectDatabase from "./config/Database.CONFIG"
+import { errorHandler } from "./middlewares/ErrorHandler.MIDDLEWARE"
+import { HTTPSTATUS } from "./config/Http.CONFIG"
+import { asyncHandler } from "./middlewares/AsyncHandler.MIDDLEWARE"
 
 const app = express();
 const BASE_PATH = config.BASE_PATH;
 
 app.use(express.json());
 
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true })); 
 
 app.use(
     session({
@@ -30,11 +33,16 @@ app.use(
     })
 )
 
-app.get("/", (req: Request, res: Response, next: NextFunction) => {
-    res.status(200).json({
-        message: "Hello This TEAMSync APP."
+app.get("/", 
+    asyncHandler ((req: Request, res: Response, next: NextFunction) => {
+        throw new Error("Test Error");
+        res.status(HTTPSTATUS.OK).json({
+            message: "Hello This TEAMSync APP."
+        })
     })
-})
+)
+
+app.use(errorHandler);
 
 app.listen(config.PORT, async () => {
     console.log(`Server listening on port ${config.PORT} in ${config.NODE_ENV} mode.`);
