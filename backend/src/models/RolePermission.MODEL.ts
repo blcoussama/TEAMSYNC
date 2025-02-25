@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document } from "mongoose";
-import { PermissionType, Roles, RoleType } from "../enums/Role.ENUM";
+import { Permissions, PermissionType, Roles, RoleType } from "../enums/Role.ENUM";
 import { RolePermissions } from "../utils/RolePermission.UTIL";
 
 export interface RoleDocument extends Document {
