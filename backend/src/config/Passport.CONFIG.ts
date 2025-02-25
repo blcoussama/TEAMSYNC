@@ -5,6 +5,7 @@ import { config } from "./App.CONFIG";
 import { NotFoundException } from "../utils/AppError.UTIL";
 import { ProviderEnum } from "../enums/AccountProvider.ENUM";
 import { loginOrCreateAccountService } from "../services/Auth.SERVICE";
+import { any } from "zod";
 
 passport.use(
     new GoogleStrategy({
@@ -41,3 +42,6 @@ passport.use(
         }
     )
 );
+
+passport.serializeUser(( user: any, done) => done(null, user));
+passport.deserializeUser(( user: any, done) => done(null, user));

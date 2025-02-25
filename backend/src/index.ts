@@ -7,7 +7,9 @@ import connectDatabase from "./config/Database.CONFIG"
 import { errorHandler } from "./middlewares/ErrorHandler.MIDDLEWARE"
 import { HTTPSTATUS } from "./config/Http.CONFIG"
 import { asyncHandler } from "./middlewares/AsyncHandler.MIDDLEWARE"
-import { BadRequestException } from "./utils/AppError.UTIL"
+import passport from "passport"
+import authRoutes from "./routes/Auth.ROUTE"
+
 
 const app = express();
 const BASE_PATH = config.BASE_PATH;
@@ -27,6 +29,9 @@ app.use(
     })
 )
 
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(
     cors({
         origin: config.FRONTEND_ORIGIN,
@@ -37,10 +42,12 @@ app.use(
 app.get("/", 
     asyncHandler( async(req: Request, res: Response, next: NextFunction) => {
         res.status(HTTPSTATUS.OK).json({
-            message: "Hello This TEAMSync APP."
+            message: "This is TEAMSync APP."
         })
     })
 )
+
+app.use(`${BASE_PATH}/auth`, authRoutes);
 
 app.use(errorHandler);
 
