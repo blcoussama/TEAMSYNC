@@ -65,3 +65,35 @@ export const loginUserController = asyncHandler(
         )(req, res, next);
     }
 );
+
+export const logoutUserController = asyncHandler(
+    async(req: Request, res: Response) => {
+        // Handle Passport logout
+        req.logout((err) => {
+            if (err) {
+                console.error("Logout Error", err);
+                return res.status(HTTPSTATUS.INTERNAL_SERVER_ERROR).json({
+                    error: "Failed to Log Out."
+                });
+            }
+
+            // Destroy the session
+            req.session.destroy((err) => {
+                if (err) {
+                    console.error("Session Destruction Error", err);
+                    return res.status(HTTPSTATUS.INTERNAL_SERVER_ERROR).json({
+                        error: "Failed to Destroy Session."
+                    });
+                }
+
+                // Clear the session cookie
+                res.clearCookie('session'); // Adjust 'session' to your cookie name if customized
+
+                // Send success response
+                return res.status(HTTPSTATUS.OK).json({
+                    message: "Logged Out Successfully."
+                });
+            });
+        });
+    }
+)
