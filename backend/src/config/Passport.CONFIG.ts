@@ -1,4 +1,4 @@
-import passport, { Passport } from "passport";
+import passport from "passport";
 import { Request } from "express";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import { Strategy as LocalStrategy } from "passport-local";
@@ -6,7 +6,6 @@ import { config } from "./App.CONFIG";
 import { NotFoundException } from "../utils/AppError.UTIL";
 import { ProviderEnum } from "../enums/AccountProvider.ENUM";
 import { loginOrCreateAccountService, verifyUserService } from "../services/Auth.SERVICE";
-import { emailSchema } from "../validation/Auth.VALIDATION";
 
 passport.use(
     new GoogleStrategy({
