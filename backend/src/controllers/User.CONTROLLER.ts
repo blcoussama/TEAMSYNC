@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
 import { HTTPSTATUS } from "../config/Http.CONFIG";
 import { asyncHandler } from "../middlewares/AsyncHandler.MIDDLEWARE";
 import { getCurrentUserService } from "../services/User.SERVICE";

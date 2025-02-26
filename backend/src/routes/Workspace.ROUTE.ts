@@ -1,17 +1,23 @@
 import { Router } from "express";
-import { createWorkspaceController, getAllWorkspacesUserIsMemberController, getWorkspaceByIdController, getWorkspaceMembersController } from "../controllers/Workspace.CONTROLLER";
+import { changeWorkspaceMemberRoleController, createWorkspaceController, deleteWorkspaceByIdController, getAllWorkspacesUserIsMemberController, getWorkspaceAnalyticsController, getWorkspaceByIdController, getWorkspaceMembersController, updateWorkspaceByIdController } from "../controllers/Workspace.CONTROLLER";
 
 const workspaceRoutes = Router();
 
 workspaceRoutes.post("/create/new", createWorkspaceController);
-
-workspaceRoutes.post("")
 
 workspaceRoutes.get("/all", getAllWorkspacesUserIsMemberController);
 
 workspaceRoutes.get("/:id", getWorkspaceByIdController);
 
 workspaceRoutes.get("/members/:id", getWorkspaceMembersController);
+
+workspaceRoutes.get("/analytics/:id", getWorkspaceAnalyticsController);
+
+workspaceRoutes.put("/change/member/role/:id", changeWorkspaceMemberRoleController);
+
+workspaceRoutes.put("/update/:id", updateWorkspaceByIdController);
+
+workspaceRoutes.delete("/delete/:id", deleteWorkspaceByIdController);
 
 
 export default workspaceRoutes;
