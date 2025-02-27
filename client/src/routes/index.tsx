@@ -44,6 +44,7 @@ function AppRoutes() {
             ))}
           </Route>
         </Route>
+        
         {/* Catch-all for undefined routes */}
         <Route path="*" element={<NotFound />} />
       </Routes>
